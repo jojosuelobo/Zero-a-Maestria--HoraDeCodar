@@ -61,8 +61,23 @@ function App() {
   }
 
   // Processa o pinput de letras
-  const verifyLetter = () => {
-    setGameStage(stages[2].name)
+  const verifyLetter = (letter) => {
+    const normalizedLetter = letter.toLowerCase()
+
+    if (guessedLetter.includes(normalizedLetter) || wrongLetters.includes(normalizedLetter)) {
+      return
+    }
+
+    if (letters.includes(normalizedLetter)) {
+      setGuessedLetter((actualGuessedLetter) => [
+        ...actualGuessedLetter, normalizedLetter
+      ])
+    } else {
+      setWrongLetters((actualWrongLetters) => [
+        ...actualWrongLetters, normalizedLetter
+      ])
+
+    }
   }
 
   const retry = () => {
@@ -77,7 +92,7 @@ function App() {
           verifyLetter={verifyLetter}
           pickedWord={pickedWord}
           pickedCategory={pickedCategory}
-          letters={letters} 
+          letters={letters}
           guessedLetter={guessedLetter}
           WrongLetters={wrongLetters}
           guesses={guesses}

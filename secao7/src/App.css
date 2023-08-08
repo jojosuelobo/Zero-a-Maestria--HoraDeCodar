@@ -1,12 +1,14 @@
-.App{
+*{
   text-align: center;
 }
 
 .add-product {
+  margin-top: 10px;
   border-top: 1px solid #000;
 }
 
 form {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,4 +19,8 @@ form input {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+}
+
+button{
+  margin-left: 10px;
 }

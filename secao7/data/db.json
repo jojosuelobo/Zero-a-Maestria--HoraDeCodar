@@ -19,6 +19,16 @@
       "name": "Capa de chuva",
       "price": "51.80",
       "id": 4
+    },
+    {
+      "name": "Mouse",
+      "price": "14",
+      "id": 5
+    },
+    {
+      "name": "Capacete",
+      "price": "200",
+      "id": 6
     }
   ]
 }

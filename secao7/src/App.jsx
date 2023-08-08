@@ -58,6 +58,10 @@ function App() {
     setPrice("")
   }
 
+  const handleDelete = async (id) => {
+    httpConfig(id, "DELETE")
+  }
+
   return (
     <div>
       <h1>Lista de produtos</h1>
@@ -69,7 +73,7 @@ function App() {
           {items && items.map((product) => (
             <li key={product.id}>
               {product.name} - R$: {product.price}
-              {/* <button>Deletar</button> */}
+              <button onClick={ () => handleDelete(product.id) }>Deletar</button>
             </li>
           ))}
         </ul>
@@ -94,8 +98,8 @@ function App() {
               name="price"
               onChange={(e) => setPrice(e.target.value)}
             />
-          </label>
-          {/* State de Loading no Post */}
+          </label> 
+          {/* State de Loading no Post*/}
           {loading && ( <input type="submit" value="Carregando" disabled /> )}
           {!loading && ( <input type="submit" value="Criar" /> )}
         </form>

@@ -8,6 +8,7 @@ import Navbar from './components/navbar'
 
 // 1: Configurar react router
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Products from './pages/Products'
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>}/>
+          {/* Rota dinâmica */}
+          <Route path='/products/:id' element={<Products/>}/>
         </Routes>
       </BrowserRouter>
     </div>

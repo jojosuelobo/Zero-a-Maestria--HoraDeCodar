@@ -1,21 +1,29 @@
-/* eslint-disable no-unused-vars */
-import { createContext, useReducer } from "react";
+// contexto mais complexo
+import { createContext, useReducer, useState } from "react";
 
-export const TitleColorContext = createContext()
+export const TitleColorContext = createContext();
 
 export const titleColorReducer = (state, action) => {
-    // Switch
-    switch(action.type){
-        case "RED":
-            return {...state, color: "red"}
-        case "BLUE":
-            return {...state, color: "blue"}
-        default:
-            return state
-    }
-}
+  switch (action.type) {
+    case "RED":
+      return { ...state, color: "red" };
+    case "BLUE":
+      return { ...state, color: "blue" };
+    default:
+      return state;
+  }
+};
 
-export const TitleColorContextProvider = ({children}) => {
-    const [state, dispatch] = useReducer(titleColorReducer, {color: "purple"})
-    return <TitleColorContext.Provider value={{...state}}>{children}</TitleColorContext.Provider>
-}
+export const TitleColorContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(titleColorReducer, {
+    color: "purple",
+  });
+
+  console.log("Title Color Context:", state);
+
+  return (
+    <TitleColorContext.Provider value={{ ...state, dispatch }}>
+      {children}
+    </TitleColorContext.Provider>
+  );
+};

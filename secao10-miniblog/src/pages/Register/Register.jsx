@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
-import styles from './Register.module.css';
-
+import { useAuthentication } from '../../hooks/useAuthentication';
 import { useState, useEffect } from 'react';
+
+import styles from './Register.module.css';
 
 export default function Register() {
     const [displayName, setDisplayName] = useState("")
@@ -10,7 +11,16 @@ export default function Register() {
     const [confirmPassword, setConfirmPassword] = useState("")
     const [error, setError] = useState("")
 
-    const handleSubmit = (e) => {
+    const {createUser, error: authError, loading} = useAuthentication()
+
+    const cleanForm = () => {
+        setDisplayName("")
+        setEmail("")
+        setPassword("")
+        setConfirmPassword("")
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setError("")
         const user = {
@@ -22,8 +32,17 @@ export default function Register() {
             setError("As senhas devem ser iguais")
             return
         }
-        console.log(user)
+
+        const res = await createUser(user)
+
+        console.log(res)
+        if(!error) {cleanForm()}
     }
+
+    useEffect(() => {
+        if(authError)
+            setError(authError)
+    }, [authError])
 
     return (
         <div className={styles.register}>
@@ -74,7 +93,8 @@ export default function Register() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </label>
-                <button className='btn'>Cadastrar</button>
+                {!loading && <button className='btn'>Cadastrar</button>}
+                {loading && <button className='btn' disabled>Carregando...</button>}
                 {error && <p className='error'>{error}</p>}
             </form>
         </div>

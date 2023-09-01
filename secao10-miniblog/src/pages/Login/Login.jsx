@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import styles from './Login.module.css';
 
 export default function Login() {

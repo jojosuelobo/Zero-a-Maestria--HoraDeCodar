@@ -7,6 +7,7 @@ import { useAuthValue } from '../context/AuthContext'
 
 export default function Navbar() {
     const { user } = useAuthValue()
+    const { logout} = useAuthentication()
 
     return (
         <nav className={styles.navbar}>
@@ -17,6 +18,16 @@ export default function Navbar() {
                 <li>
                     <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : "")}>Home</NavLink>
                 </li>
+                {user && (
+                    <>
+                        <li>
+                            <NavLink to="/dashboard" className={({ isActive }) => (isActive ? styles.active : "")}>Dashboard</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/posts/create" className={({ isActive }) => (isActive ? styles.active : "")}>Criar Post</NavLink>
+                        </li>
+                    </>
+                )}
                 <li>
                     <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : "")}>Sobre</NavLink>
                 </li>
@@ -31,14 +42,9 @@ export default function Navbar() {
                     </>
                 )}
                 {user && (
-                    <>
-                        <li>
-                            <NavLink to="/dashboard" className={({ isActive }) => (isActive ? styles.active : "")}>Dashboard</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/posts/create" className={({ isActive }) => (isActive ? styles.active : "")}>Criar Post</NavLink>
-                        </li>
-                    </>
+                    <li>
+                        <button onClick={logout}>Sair</button>
+                    </li>
                 )}
             </ul>
         </nav>

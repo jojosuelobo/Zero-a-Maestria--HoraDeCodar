@@ -65,9 +65,9 @@ export default function CreatePost() {
           />
         </label>
         <button className='btn'>Cadastrar</button>
-        {/* {!loading && <button className='btn'>Cadastrar</button>}
+        {!loading && <button className='btn'>Cadastrar</button>}
         {loading && <button className='btn' disabled>Carregando...</button>}
-        {error && <p className='error'>{error}</p>} */}
+        {error && <p className='error'>{error}</p>} 
       </form>
     </div>
   )
